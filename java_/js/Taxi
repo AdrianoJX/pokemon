@@ -1,0 +1,43 @@
+class Personnage {
+    constructor(prenom) {
+      this.prenom = prenom;
+      this.santeMentale = 10;
+    }
+  }
+  
+  let musiques = ["Kaaris - Zoo", "Jorja Smith - Be Honest", "Orelsan - Basique Simple", "Jey Brownie - Décisif", "Wejdene - Anissa"];
+  
+  class Trajet {
+    constructor() {
+      this.radio = musiques;
+      this.feuxRouges = 30;
+      this.changementsDeTaxi = 0;
+    }
+  
+    jouerMusique() {
+      if (this.feuxRouges <= 0) {
+        console.log(this.prenom + " est bien arrivé en " + this.changementsDeTaxi + " changements de taxi.");
+        return;
+      }
+  
+      let musique = this.radio[Math.floor(Math.random() * this.radio.length)];
+      console.log("Musique jouée: " + musique + ", Feux restants: " + this.feuxRouges);
+  
+      if (musique === "Wejdene - Anissa") {
+        console.log(this.prenom + " perd 1 de santé mentale.");
+        this.santeMentale -= 1;
+        if (this.santeMentale <= 0) {
+          console.log("Explosion !");
+          return;
+        }
+        this.changementsDeTaxi++;
+        console.log("Changement de taxi: " + this.changementsDeTaxi);
+      }
+  
+      this.feuxRouges--;
+  
+      this.jouerMusique();
+    }
+  }
+
+  
